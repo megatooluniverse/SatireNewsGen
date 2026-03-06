@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>Satire News Generator | Create Viral Breaking News Memes</title>
+    <meta name="description" content="Create hilarious fake news and breaking news memes instantly with our Satire News Generator. Free, fast, fully customizable, and mobile-friendly!">
+    <meta name="keywords" content="satire news generator, fake news maker, meme creator, breaking news meme, funny news generator, viral meme maker">
+    <meta name="author" content="megatooluniverse">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Satire News Generator | Create Viral Memes">
+    <meta property="og:description" content="Create hilarious fake news memes instantly. For entertainment only!">
+    <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/8336/8336948.png">
+    
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Satire News Generator | Create Viral Memes">
+    <meta property="twitter:description" content="Generate fake breaking news memes to prank your friends.">
+    
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/8336/8336948.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Oswald:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --danger: #ef4444;
+            --danger-dark: #b91c1c;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --border: #cbd5e1;
+            --surface: #ffffff;
+            --text: #334155;
+            --text-muted: #64748b;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: var(--surface);
+            padding: 1.2rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .warning-badge {
+            background-color: #fef2f2;
+            border: 1px solid #fecaca;
+            color: var(--danger-dark);
+            padding: 0.3rem 0.8rem;
+            font-size: 0.75rem;
+            border-radius: 99px;
+            display: inline-block;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- MAIN LAYOUT --- */
+        main {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 2rem 1rem;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .panel {
+            flex: 1;
+            min-width: 320px;
+            background: var(--surface);
+            padding: 1.8rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            border: 1px solid #e2e8f0;
+        }
+
+        /* --- CONTROLS --- */
+        .form-group { margin-bottom: 1.2rem; }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        input[type="text"],
+        textarea,
+        select,
+        input[type="file"] {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            background: var(--light);
+            color: var(--dark);
+        }
+
+        input[type="text"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--surface);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        }
+
+        textarea { resize: vertical; min-height: 90px; }
+
+        .color-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .color-input-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            border: 1.5px solid var(--border);
+            padding: 0.5rem 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            background: var(--light);
+            transition: border-color 0.2s;
+        }
+        
+        .color-input-wrapper:hover { border-color: var(--primary); }
+
+        input[type="color"] {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 4px;
+            background: none;
+            cursor: pointer;
+            margin-right: 12px;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+
+        .btn-secondary { background: var(--text-muted); color: white; }
+        .btn-secondary:hover { background: #475569; }
+
+        .btn-success { 
+            background: #10b981; 
+            color: white; 
+            width: 100%; 
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
+        }
+        .btn-success:hover { background: #059669; transform: translateY(-2px); box-shadow: 0 6px 8px rgba(16, 185, 129, 0.3); }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            padding: 0.5rem 1rem;
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+        .btn-outline:hover { background: var(--light); color: var(--dark); }
+
+        .controls-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* --- PREVIEW --- */
+        .preview-panel {
+            background: var(--dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+            border: none;
+        }
+
+        .preview-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .canvas-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Make canvas fully responsive */
+        canvas {
+            width: 100%;
+            height: auto;
+            max-width: 800px;
+            aspect-ratio: 16 / 9;
+            display: block;
+        }
+
+        /* --- MODALS --- */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            backdrop-filter: blur(8px);
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-backdrop.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-box {
+            background: var(--surface);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-backdrop.show .modal-box { transform: translateY(0); }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .modal-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
+            background: var(--light);
+            padding: 1.2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .checkbox-wrapper input {
+            margin-top: 3px;
+            transform: scale(1.3);
+            cursor: pointer;
+        }
+
+        .checkbox-wrapper label {
+            font-weight: 400;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin: 0;
+            color: var(--text);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            margin-top: auto;
+        }
+
+        .footer-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .footer-links a:hover { text-decoration: underline; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            main { padding: 1rem; gap: 1rem; }
+            .panel { padding: 1.2rem; }
+            .color-row { flex-direction: column; gap: 0.8rem; }
+            .controls-actions { flex-direction: column; }
+            .btn { width: 100%; }
+            h1 { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="gatekeeperModal" class="modal-backdrop">
+        <div class="modal-box">
+            <div class="modal-title" style="color: var(--primary);">Welcome to Satire News</div>
+            <p class="modal-text">This tool is designed to create fake news cards for comedy and meme purposes only.</p>
+            
+            <div class="checkbox-wrapper">
+                <input type="checkbox" id="acceptCheck">
+                <label for="acceptCheck">
+                    I agree to use this tool strictly for satire/memes. I have read and accept the 
+                    <a href="disclaimer.html" target="_blank">Disclaimer</a> and 
+                    <a href="privacy.html" target="_blank">Privacy Policy</a>.
+                </label>
+            </div>
+
+            <button class="btn btn-primary" id="enterBtn" style="width: 100%; opacity: 0.5; cursor: not-allowed;" disabled>Enter Studio</button>
+        </div>
+    </div>
+
+    <div id="downloadModal" class="modal-backdrop">
+        <div class="modal-box">
+            <div class="modal-title" style="color: var(--danger);">⚠️ RESPONSIBILITY CHECK</div>
+            <p class="modal-text">A mandatory "SATIRE" watermark is included on this image to prevent misinformation.</p>
+            <div class="modal-text" style="background: #fef2f2; padding: 1rem; border-radius: 8px; text-align: left; color: var(--danger-dark);">
+                <strong>By downloading, you confirm:</strong>
+                <ul style="margin-top:0.5rem; padding-left: 1.2rem;">
+                    <li>This is for comedy/satire only.</li>
+                    <li>You will not crop out the watermark.</li>
+                    <li>You will not use this to mislead the public.</li>
+                </ul>
+            </div>
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-direction: column;">
+                <button class="btn btn-primary" onclick="processDownload()">I Agree & Download</button>
+                <button class="btn btn-secondary" onclick="closeModal('downloadModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <h1>Satire News Generator</h1>
+        <div class="warning-badge">FOR ENTERTAINMENT ONLY • NOT REAL NEWS</div>
+    </header>
+
+    <main>
+        <section class="panel controls-panel">
+            <div class="form-group">
+                <label>News Channel Name</label>
+                <input type="text" id="channelInput" placeholder="e.g. DAILY MEME" value="BREAKING NEWS" maxlength="25">
+            </div>
+
+            <div class="form-group">
+                <label>Headline Text</label>
+                <textarea id="headlineInput" placeholder="Enter your funny headline here..." maxlength="120">STUDENT COMPLETES WHOLE SYLLABUS 1 NIGHT BEFORE EXAM, DECLARED AS SUPERHERO</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Background Image</label>
+                <input type="file" id="imageInput" accept="image/png, image/jpeg, image/jpg, image/webp">
+                <button class="btn btn-outline" onclick="removeImage()">Remove Image</button>
+            </div>
+
+            <div class="color-row">
+                <div class="color-input-wrapper">
+                    <input type="color" id="textColor" value="#FFFFFF">
+                    <label for="textColor">Text Color</label>
+                </div>
+                <div class="color-input-wrapper">
+                    <input type="color" id="labelColor" value="#DC2626">
+                    <label for="labelColor">Label Color</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Font Style</label>
+                <select id="fontSelect">
+                    <option value="'Oswald', sans-serif">Oswald (Modern News)</option>
+                    <option value="Impact, charcol, sans-serif">Impact (Classic Meme)</option>
+                    <option value="'Arial Black', sans-serif">Arial Black (Bold)</option>
+                    <option value="Georgia, serif">Georgia (Formal)</option>
+                </select>
+            </div>
+
+            <div class="controls-actions">
+                <button class="btn btn-secondary" id="clearBtn" style="flex:1;">Clear All</button>
+                <button class="btn btn-primary" id="refreshBtn" style="flex:1;">Refresh Preview</button>
+            </div>
+            
+            <button class="btn btn-success" id="downloadBtn">Download HD Image</button>
+        </section>
+
+        <section class="panel preview-panel">
+            <div class="preview-header">
+                <span style="font-weight: 600; font-size: 1.1rem;">Live Preview</span>
+            </div>
+            <div class="canvas-container">
+                <canvas id="newsCanvas" width="800" height="450"></canvas>
+            </div>
+            <div style="margin-top: 1.5rem; font-size: 0.85rem; color: #94a3b8; text-align: center;">
+                Pro Tip: Upload landscape (horizontal) photos for the most realistic news look!
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p><strong>Satire News Generator</strong> © 2024. Created for fun.</p>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.8rem;">All processing happens directly in your browser. We do not store your photos or data.</p>
+    </footer>
+
+    <script>
+        // --- MODAL SYSTEM ---
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        }
+
+        // --- GATEKEEPER LOGIC ---
+        const gatekeeperModal = document.getElementById('gatekeeperModal');
+        if (sessionStorage.getItem('termsAccepted') !== 'true') {
+            openModal('gatekeeperModal');
+        }
+
+        document.getElementById('acceptCheck').addEventListener('change', function() {
+            const btn = document.getElementById('enterBtn');
+            btn.disabled = !this.checked;
+            btn.style.opacity = this.checked ? '1' : '0.5';
+            btn.style.cursor = this.checked ? 'pointer' : 'not-allowed';
+        });
+
+        document.getElementById('enterBtn').addEventListener('click', function() {
+            sessionStorage.setItem('termsAccepted', 'true');
+            closeModal('gatekeeperModal');
+        });
+
+        // --- CANVAS LOGIC ---
+        const canvas = document.getElementById('newsCanvas');
+        const ctx = canvas.getContext('2d');
+        let uploadedImage = null;
+
+        // Elements
+        const inputs = {
+            channel: document.getElementById('channelInput'),
+            headline: document.getElementById('headlineInput'),
+            image: document.getElementById('imageInput'),
+            textColor: document.getElementById('textColor'),
+            labelColor: document.getElementById('labelColor'),
+            font: document.getElementById('fontSelect')
+        };
+
+        // Initialize
+        window.onload = () => {
+            // Load fonts before drawing
+            document.fonts.ready.then(() => { drawCanvas(); });
+        };
+
+        // Event Listeners for Live Update
+        Object.values(inputs).forEach(input => {
+            if (input.id !== 'imageInput') {
+                input.addEventListener('input', drawCanvas);
+            }
+        });
+
+        document.getElementById('refreshBtn').addEventListener('click', drawCanvas);
+
+        document.getElementById('clearBtn').addEventListener('click', () => {
+            inputs.channel.value = 'BREAKING NEWS';
+            inputs.headline.value = '';
+            removeImage();
+        });
+
+        // Image Upload Handle
+        inputs.image.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const img = new Image();
+                    img.onload = function() {
+                        uploadedImage = img;
+                        drawCanvas();
+                    };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function removeImage() {
+            uploadedImage = null;
+            inputs.image.value = '';
+            drawCanvas();
+        }
+
+        // Core Drawing Function
+        function drawCanvas() {
+            // 1. Clear & Default Background
+            ctx.fillStyle = '#1e293b';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 2. Draw Image if exists
+            if (uploadedImage) {
+                const scale = Math.max(canvas.width / uploadedImage.width, canvas.height / uploadedImage.height);
+                const x = (canvas.width / 2) - (uploadedImage.width / 2) * scale;
+                const y = (canvas.height / 2) - (uploadedImage.height / 2) * scale;
+                ctx.drawImage(uploadedImage, x, y, uploadedImage.width * scale, uploadedImage.height * scale);
+            } else {
+                // Placeholder pattern if no image
+                ctx.fillStyle = '#334155';
+                for(let i=0; i<canvas.width; i+=40) {
+                    ctx.fillRect(i, 0, 1, canvas.height);
+                }
+            }
+
+            // 3. Cinematic Dark Gradient (Bottom to Top)
+            const gradient = ctx.createLinearGradient(0, canvas.height * 0.3, 0, canvas.height);
+            gradient.addColorStop(0, 'rgba(0,0,0,0)');
+            gradient.addColorStop(0.6, 'rgba(0,0,0,0.7)');
+            gradient.addColorStop(1, 'rgba(0,0,0,0.95)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 4. Channel Label
+            const channelText = inputs.channel.value.toUpperCase() || "NEWS";
+            ctx.font = 'bold 26px Inter, Arial';
+            const paddingX = 20;
+            const textMetrics = ctx.measureText(channelText);
+            const boxWidth = textMetrics.width + (paddingX * 2);
+            
+            // Channel Background Box
+            ctx.fillStyle = inputs.labelColor.value;
+            ctx.fillRect(40, 40, boxWidth, 50);
+            
+            // Channel Text
+            ctx.fillStyle = '#FFFFFF';
+            ctx.textBaseline = 'middle';
+            ctx.textAlign = 'left';
+            ctx.fillText(channelText, 40 + paddingX, 40 + 26);
+
+            // 5. Headline Text Wrapping Logic
+            const headline = inputs.headline.value.toUpperCase();
+            if (headline) {
+                const fontSize = 48;
+                ctx.font = `bold ${fontSize}px ${inputs.font.value}`;
+                ctx.fillStyle = inputs.textColor.value;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'bottom';
+                
+                // Professional Drop Shadow
+                ctx.shadowColor = "rgba(0,0,0,0.9)";
+                ctx.shadowBlur = 10;
+                ctx.shadowOffsetX = 3;
+                ctx.shadowOffsetY = 3;
+
+                const maxWidth = canvas.width - 80;
+                const lineHeight = fontSize * 1.2;
+                const lines = getLines(ctx, headline, maxWidth);
+                
+                // Calculate Y position to rest nicely above the watermark
+                let startY = canvas.height - 50 - ((lines.length - 1) * lineHeight);
+
+                lines.forEach(line => {
+                    ctx.fillText(line, canvas.width / 2, startY);
+                    startY += lineHeight;
+                });
+
+                // Reset Shadow for other elements
+                ctx.shadowColor = "transparent";
+            }
+
+            // 6. Mandatory "SATIRE" Watermark Strip
+            ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
+            ctx.fillRect(0, canvas.height - 30, canvas.width, 30);
+            
+            ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+            ctx.font = "bold 13px Inter, Arial";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.letterSpacing = "2px";
+            ctx.fillText("⚠️ SATIRE NEWS • NOT REAL • GENERATED FOR FUN", canvas.width / 2, canvas.height - 15);
+        }
+
+        // Smart Word Wrap Function
+        function getLines(ctx, text, maxWidth) {
+            const words = text.split(" ");
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                const word = words[i];
+                const width = ctx.measureText(currentLine + " " + word).width;
+                if (width < maxWidth) {
+                    currentLine += " " + word;
+                } else {
+                    lines.push(currentLine);
+                    currentLine = word;
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // --- DOWNLOAD LOGIC ---
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            openModal('downloadModal');
+        });
+
+        function processDownload() {
+            drawCanvas(); // Force redraw to ensure watermark is present
+            const link = document.createElement('a');
+            link.download = `breaking-news-${Date.now()}.png`;
+            link.href = canvas.toDataURL('image/png', 1.0); // Highest quality PNG
+            link.click();
+            closeModal('downloadModal');
+        }
+    </script>
+</body>
+</html>
